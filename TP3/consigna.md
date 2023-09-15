@@ -15,4 +15,3 @@
 9. Dadas dos listas de números del mismo tamaño, crea una nueva lista que contenga la multiplicación de los elementos correspondientes de ambas listas utilizando list comprehensions.
 10. Dada una lista de números, crea dos listas separadas: una que contenga los números pares y otra que contenga los números impares utilizando list comprehensions.
 11. Dada una lista de diccionarios que contienen información de estudiantes de una materia (nombre_apellido, legajo, nota_parcial1, nota_parcial2, nota_final), crea una lista que contenga los nombres de todos los estudiantes que han obtenido una calificación superior a 90 en al menos un examen utilizando list comprehensions.
-
