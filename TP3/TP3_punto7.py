@@ -2,7 +2,7 @@ def contar_vocales(palabra):
 
     vocales = ['a', 'e', 'i', 'o', 'u']
     contador = 0
-    vocaleslist =[letra for letra in palabra if letra.lower() in vocales contador+=1]
+    vocaleslista =[letra for letra in palabra if letra.lower() in vocales contador+=1]
     return contador
 
 while True:
