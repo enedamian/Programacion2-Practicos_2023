@@ -3,3 +3,4 @@ personas = [{'nombre': 'Hector', 'edad': 27}, {'nombre': 'Juan', 'edad': 18}, {'
 peronasOrdenadas = sorted(personas, key=lambda x: x['edad'], reverse=False)
 
 print(peronasOrdenadas)
+""""si lees esto perdiste"""
