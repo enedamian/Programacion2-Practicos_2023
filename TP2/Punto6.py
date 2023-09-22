@@ -14,26 +14,29 @@ son: … , … , …. , …. “ """
 def leer_archivo():
    lista = list()
    try:
-       archivo = open("distancias punto 6.txt","r")
+       archivo = open("C:\Archivos de código\programacion2\Programacion2-Practicos\TP2\distancias punto 6.txt", "r")
        lineas = archivo.readlines()
-       for linea in archivo:
-            lista.append(linea)
+       for linea in lineas:
+            lista.append(linea.strip())  # Agregamos strip() para eliminar caracteres de nueva línea
        archivo.close() 
    except:
         print("No se pudo abrir el archivo")    
-   
+   print(lista)
    return lista
-   
+
+
 def promedio_de_lista(lista):
     suma = 0
-    cantidad = 0
     for linea in lista:
         suma += float(linea)
-        cantidad += 1
-    return suma / cantidad
     
+    # Comprobación para evitar división por cero
+    if len(lista) == 0:
+        return 0
+    
+    return suma / len(lista)
 
-def numeros_superan_promedio(lista,promedio):
+def numeros_superan_promedio(lista, promedio):
     lista_superan = list()
     for linea in lista:
         if float(linea) > promedio:
@@ -42,5 +45,4 @@ def numeros_superan_promedio(lista,promedio):
 
 lista = leer_archivo()
 promedio = promedio_de_lista(lista)
-print(f"La distancia promedio de los viaes es {promedio} y los vias con distancia mayor son: {numeros_superan_promedio(lista,promedio)}")
-#print(promedio_de_lista())
+print(f"La distancia promedio de los viajes es {promedio} y los viajes con distancia mayor son: {numeros_superan_promedio(lista, promedio)}")
