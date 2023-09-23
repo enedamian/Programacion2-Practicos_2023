@@ -6,5 +6,5 @@ print(lista_nueva)
 """
 alumnos =[{"nombre":"pepe","nota1":90, "nota2":84}, {"nombre":"pepe2","nota1":50, "nota2":94},{"nombre":"pepe3","nota1":80, "nota2":84}]
 nombres = [elem["nombre"] for elem in alumnos if (elem["nota1"]>=90) or (elem["nota2"]>=90)]
-print(nombres)
+print(nombres) 
 """
