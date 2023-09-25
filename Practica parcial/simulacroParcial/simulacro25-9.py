@@ -23,7 +23,7 @@ def hashFecha(stringfecha):
 #Crea una lista de diccionarios donde cada diccionario represente un producto. Los diccionarios deben tener tres claves: "Nombre" del tipo string, "Precio" del tipo float 
 # y "Cantidad" del tipo entero, y  los valores deben corresponder a los datos del archivo CSV
 
-def crearStock(archivo):
+def crearStock(rutaArchivo):
     lista=[]
     return lista
 
