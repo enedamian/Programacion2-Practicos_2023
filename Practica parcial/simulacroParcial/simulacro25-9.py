@@ -18,8 +18,8 @@ print(hashFecha(mifecha)) #resultado: 0
 
 # 2) Explique el funcionamiento y describa el algoritmo de ordenamiento que le corresponda según su resultado anterior: 0=burbuja, 1=inserción, 2=selección.
 
-# Funcionamiento: El ordenamiento burbuja compara cada elemento con el siguiente y los intercambia si están en el orden incorrecto, repitiendo el proceso la cantidad de elementos que haya menos 2
-# Algoritmo: El algoritmo primero recorre la lista n - 2 veces (siendo n la longitud de la lista). Dentro de dicho ciclo, recorre la lista nuevamente, pero esta vez una cantidad n-1-i veces (siendo i el índice del primer ciclo). Esto se hace porque con cada ciclo el último elemento ya queda ordenado y por lo tanto no es necesario compararlo (lo cual optimiza el código). Luego en cada paso se compara el elemento j (el indice del segundo bucle) con el elemento siguiente y si estos están desornados se intercambian.
+# Funcionamiento: El ordenamiento burbuja compara cada elemento con el siguiente y los intercambia si están en el orden incorrecto, repitiendo el proceso la cantidad de elementos que haya menos 1
+# Algoritmo: El algoritmo primero recorre la lista n - 1 veces (siendo n la longitud de la lista). Dentro de dicho ciclo, recorre la lista nuevamente, pero esta vez una cantidad n-1-i veces (siendo i el índice del primer ciclo). Esto se hace porque con cada ciclo el último elemento ya queda ordenado y por lo tanto no es necesario compararlo (lo cual optimiza el código). Luego en cada paso se compara el elemento j (el indice del segundo bucle) con el elemento siguiente y si estos están desornados se intercambian.
 
 
 # 3)  Usando el archivo CSV "datos.csv" que contiene información sobre productos. El archivo tiene el siguiente formato:
@@ -37,6 +37,7 @@ def crearStock(ruta):
     for linea in archivo:
         datos = linea.split(",")
         lista.append({"Nombre": datos[0].strip(), "Precio": float(datos[1]), "Cantidad": int(datos[2])})
+    archivo.close()
     return lista
 
 # 4) Crear dos funcion que utilizando la estructura del punto 3, una que nos devuelva el producto mas caro y la otra que nos devuelva el producto con menor cantidad.
@@ -61,21 +62,5 @@ def productoMenorCantidad(lista):
     return mas_caro["Nombre"]
 
 # 5) Implemente una funcion que nos devuelva el total de la posible ganancia. Esto es, Cantidad * Precio para cada producto y que sume todos los resultados. (¿Se puede usar reduce? Fundamente)
-def totalGanancia(lista):
-    total = 0
-    for producto in lista:
-        total += producto["Precio"] * producto["Cantidad"]
-    return total
-
-#Se puede resolver con un reduce también, aunque en dicho caso primero los dos argumentos de la función serian dos diccionarios y luego serían un float y un diccionario, por lo que la función debería hacer calculos distintos en cada caso usando la funcion isinstance() para saber el tipo. Un ejemplo seria el siguiente:
-
 def totalGanancia2(lista):
-    def ganancia(x, y):
-        if isinstance(x, dict):
-            return x["Precio"] * x["Cantidad"] + y["Precio"] * y["Cantidad"]
-        else:
-            return x + y["Precio"] * y["Cantidad"]
-
-    return reduce(ganancia, lista)
-
-#Sin embargo en este caso la función me parece mucho más artificial y la solución con un for es más clara
+    return reduce(lambda x,y: x + y["Precio"] * y["Cantidad"], lista, 0)
