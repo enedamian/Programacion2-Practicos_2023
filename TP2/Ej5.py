@@ -46,3 +46,23 @@ alumnos = cargar_notas_alumnos(cantidad)
 imprimir_listado_estado_alumnos(alumnos)
 
 
+# Mi solución:
+
+alumnos = dict()
+
+
+cantidad = int(input("¿Cuantos alumnos desea ingresar?"))
+
+for i in range(cantidad):
+    nombre = input("Nombre del alumno: ")
+    nota = int(input("Nota del parcial: "))
+
+    alumnos[nombre] = nota
+
+resultados = []
+
+for alumno, nota in alumnos.items():
+    if nota >= 40:
+        resultados.append("Aprobado")
+    else:
+        resultados.append("Desaprobado")

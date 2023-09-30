@@ -43,3 +43,30 @@ lista_notas = leer_notas(cantidad)
 indice_nota_mayor = buscar_indice_nota_mayor(lista_notas)
 print(f"La nota mayor es {lista_notas[indice_nota_mayor]} en el índice {indice_nota_mayor} de la lista, y fua la nota N° {indice_nota_mayor+1}.")
 
+# Mi solucion:
+
+def cargar_notas(cantidad_notas):
+    notas = []
+    for nota in range(cantidad_notas):
+        nota = int(input("Ingrese la nota: "))
+        if nota > 10 or nota < 0:
+            print(f"La nota {nota} no es válida")
+        else:
+            notas.append(nota)
+    return notas
+
+def nota_mas_alta(notas):
+    max = notas[0]
+
+    for nota in notas:
+        if nota > max:
+            max = nota
+
+    return max
+
+lista_notas = int(input("¿Cuantas notas desea ingresar?\n"))
+
+nueva_lista = cargar_notas(lista_notas)
+
+print(f"Notas ingresadas: {nueva_lista}")
+print(f"La nota más alta es: {nota_mas_alta(nueva_lista)} y se encuentra en el índice: {nueva_lista.index(nota_mas_alta(nueva_lista))}")

@@ -38,3 +38,44 @@ numero = leer_entero("Ingrese un numero: ")
 lista_digitos = separar_digitos(numero)
 pos = buscar_indice_mayor_con_MAX(lista_digitos)
 print(f"El digito mayor es: {lista_digitos[pos]}, en la posición {pos} de la lista.")
+
+#Mi solucion:
+
+def validacion():
+    repetir = True
+
+    while repetir:
+        try:
+            ingreso = input()
+            numero = int(ingreso)
+            repetir = False
+        except ValueError:
+            print("Debe ingresar un número entero.\nDebe ingresar un numero entero:\n")
+
+    return numero;
+   
+def almacenar_lista():
+    lista = []
+
+    print("ingrese un número entero positivo: ")
+    numero = validacion()
+
+    while numero != 0:
+        digito = numero % 10
+        lista.insert(0, digito)
+        numero = numero // 10
+
+    return lista
+
+def indice_mayor(lista):
+    max = lista[0]
+
+    for numero in lista:
+        if numero > max:
+            max = numero
+    return max
+
+lista = almacenar_lista()
+print(lista)
+
+print(f"El digito mayor se encuentra en el indice {lista.index(indice_mayor(lista))}")
