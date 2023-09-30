@@ -13,3 +13,20 @@ else:
     
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solucion:
+
+def num_mayor(a, b, c):
+    if a >= b and a >= c:
+        return a
+    elif b >= a and b >= c:
+        return b
+    else:
+        return c
+    
+num_1 = int(input("Ingrese el primer número: "))
+num_2 = int(input("Ingrese el segundo número: "))
+num_3 = int(input("Ingrese el tercer número: "))
+
+mayor = num_mayor(num_1, num_2, num_3)
+print(f"El número mayor es: {mayor}")

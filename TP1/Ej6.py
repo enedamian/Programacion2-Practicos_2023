@@ -14,3 +14,20 @@ print()
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solucion:
+
+def secuencia(num):
+    secuencia_numeros = []
+
+    for i in range(1, num + 1):
+        secuencia_numeros.append(i)
+    return secuencia_numeros
+
+num = int(input("Ingrese un número entero positivo: "))
+
+if num <= 0:
+    print("Ingrese un número entero positivo.")
+else:
+    sec = secuencia(num)
+    print(sec)

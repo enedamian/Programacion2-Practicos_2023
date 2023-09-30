@@ -13,3 +13,24 @@ print()
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solución:
+
+def buscar_multiplo(a, b, c):
+    multiplos = []
+
+    for i in range(a, b):
+        if i % c == 0:
+            multiplos.append(i)
+
+    return multiplos
+
+A = int(input("Introduce un numero entero: "))
+B = int(input("Introduce otro numero entero: "))
+X = int(input("Introduce otro numero entero: "))
+
+if A <= 0 or B <= 0 or X <= 0:
+    print("Solo se aceptan valores positivos")
+else:
+    lista_multiplos = buscar_multiplo(A, B, X)
+    print(f"Los numeros multiplos de {X} entre {A} y {B} son: {lista_multiplos}")

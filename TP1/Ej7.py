@@ -12,3 +12,20 @@ for i in range(0,limite + 1):
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solucion:
+
+def secuencia(num):
+    secuencia_numeros = []
+
+    for i in range(2, num + 1, 2):
+        secuencia_numeros.append(i)
+    return secuencia_numeros
+
+num = int(input("Ingrese un número entero positivo: "))
+
+if num <= 0:
+    print("Ingrese un número entero positivo.")
+else:
+    sec = secuencia(num)
+    print(sec)

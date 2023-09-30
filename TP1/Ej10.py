@@ -26,3 +26,25 @@ print()
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solucion:
+
+def dibujar_rectangulo(lado1, lado2):
+    char = '*'
+    for i in range(lado1):
+        for j in range(lado2):
+            print(char, end = "")
+        print()
+
+
+ancho = int(input("Ingrese el ancho del rectángulo: "))
+altura = int(input("Ingrese la altura del rectángulo: "))
+
+if ancho < 0 or altura < 0:
+    print("Ingrese un valor positivo")
+else:
+    if ancho > 10 or altura > 10:
+        print("Ingrese un valor no mayor a 10 para los lados")
+    else:
+        rectangulo = dibujar_rectangulo(altura, ancho)
+        print(rectangulo)

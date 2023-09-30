@@ -17,3 +17,20 @@ print(f"Se ingresaron {contador} numeros, la suma es: {suma}, y el promedio: {su
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+# Mi solución:
+
+num = int(input("Ingrese un número entero: "))
+suma = 0
+contador = 0
+
+while(num >= 0):
+    suma += num
+    contador +=1
+    num = int(input("Ingrese otro número entero (negativo para terminar): "))
+
+if contador > 0:
+    promedio = suma / contador
+    print(f"El promedio es: {promedio} con un total de {contador} ingresos")
+else:
+    print("No ingresó ningún número positivo")

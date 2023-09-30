@@ -17,3 +17,22 @@ print(f"Se necesitarán {litros:.2f} litros de pintura para pintar la habitació
 
 #-----------------------------------------------------------
 # soluciones mejoradas:
+
+#Mi solucion:
+
+def cant_necesaria(a, b, c):
+    area_puerta = 0.8 * 2
+    area_paredes = 2 * (a + b) * c
+    area_total = area_paredes - area_puerta
+    litros_necesarios = area_total / 10
+    return litros_necesarios
+
+ancho = float(input("Ingrese el ancho de la habitación: "))
+largo = float(input("Ingrese el largo de la habitación: "))
+altura = float(input("Ingrese la altura de la habitación: "))
+
+if ancho <= 0 or largo <= 0 or altura <= 0:
+    print("Las dimensiones deben tener valores positivos.")
+else:
+    litros = cant_necesaria(altura, largo, ancho)
+    print(f"Se necesitan {litros} litros de pintura.")
