@@ -12,45 +12,68 @@ cargarle datos utilizando los códigos de los productos del archivo anterior. Ej
 140;10;8
 201;20;30 ( etc… )"""
 
-def cargar_datos_de_productos():
-    ruta = r"c:\Programacion2\productos.txt"
-    lista_productos=[]
-    with open(ruta, 'r') as archivo:
-        for linea in archivo:
-            producto = linea.split(";")
-            dic_prod = {"codigo":producto[0], "nombre":producto[1], "precio":int(producto[2])}
-            lista_productos.append(dic_prod)
-            print(lista_productos[len(lista_productos)-1])
+
+# mi solucion:
+
+def cargar_productos(ruta):
+    archivo = open(ruta, "r")
+    lista_productos = []
+
+    for linea in archivo:
+        linea_producto = linea.split(";")
+
+        productos = {
+            "codigo": int(linea_producto[0]),
+            "nombre": linea_producto[1],
+            "precio": int(linea_producto[2])
+        }
+
+        lista_productos.append(productos)
+
+    archivo.close()
+
     return lista_productos
 
-def cargar_datos_stock():
-    ruta = r"c:\Programacion2\stock.txt"
-    lista_stock=[]
-    with open(ruta, 'r') as archivo:
-        for linea in archivo:
-            stock = linea.split(";")
-            # formato “codigo de producto; stock mínimo; stock real”
-            dic_prod = {"codigo":stock[0], "stock_minimo":int(stock[1]), "stock_real":int(stock[2])}
-            lista_stock.append(dic_prod)
-            print(lista_stock[len(lista_stock)-1])
+
+def cargar_stock(ruta):
+    archivo = open(ruta, "r")
+    lista_stock = []
+
+    for linea in archivo:
+        linea_stock = linea.split(";")
+
+        productos_stock = {
+            "codigo": int(linea_stock[0]),
+            "stock_minimo": int(linea_stock[1]),
+            "stock_real": int(linea_stock[2])
+        }
+
+        lista_stock.append(productos_stock)
+    
+    archivo.close()
+    
     return lista_stock
 
-def generar_archivo_compras():
-    ruta = r"c:\Programacion2\compras.txt"
-    lista_productos = cargar_datos_de_productos()
-    lista_stock = cargar_datos_stock()
+
+def generar_compras(lista_productos, lista_stock):
+    ruta = r"repo\Programacion2-Practicos\TP2\Compras.txt"
     lista_compras = []
+
     for producto in lista_productos:
         for stock in lista_stock:
-            if producto["codigo"] == stock["codigo"] and stock["stock_minimo"] >= stock["stock_real"]:
+            if producto["codigo"] == stock["codigo"] and stock["stock_real"] < stock["stock_minimo"]:
                 lista_compras.append(producto)
+                
+    archivo_compras = open(ruta, "w")
+    archivo_compras.write("Codigo - Nombre\n")
     
-    with open(ruta, 'w') as archivo:
-        for producto in lista_compras:
-            archivo.write(producto["codigo"]+";"+producto["nombre"]+"\n")
+    for compra in lista_compras:
+        archivo_compras.write(f"{compra['codigo']};{compra['nombre']}\n")
 
 
-generar_archivo_compras()
+ruta_productos = "repo\Programacion2-Practicos\TP2\productos.csv"
+ruta_stock = "repo\Programacion2-Practicos\TP2\stock.csv"
 
-
-
+lista_productos = cargar_productos(ruta_productos)
+lista_stock = cargar_stock(ruta_stock)
+generar_compras(lista_productos, lista_stock)

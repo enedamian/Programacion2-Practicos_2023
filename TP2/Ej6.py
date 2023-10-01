@@ -12,27 +12,37 @@ Salida: “La distancia promedio de los viajes es … y los viajes con distancia
 son: … , … , …. , …. “
 """
 
-def calcular_promedio(lista):
-    return sum(lista)/len(lista)
+def cargar_distancias(ruta):
 
-def cargar_distancias():
-    ruta = r"c:\Programacion2\distancias.txt"
-    archivo = open(ruta, 'r')
-    lista_distancias=[]
+    archivo = open(ruta, "r")
+    distancias = []
+
     for linea in archivo:
-        lista_distancias.append(int(linea))
-    archivo.close() # recordar cerrar el archivo cuando terminan de utilizarlo (otra forma segura de utilizar archivos es con la sentencia with)
-    return lista_distancias
+        distancias.append(int(linea))
+    
+    archivo.close()
 
-def buscar_distancias_mayores(referencia, lista):
-    mayores=[]
-    for distancia in lista:
-        if distancia>referencia:
-            mayores.append(distancia)
-    return mayores
+    return distancias
 
+def calcular_promedio(distancias):
+    total = sum(distancias)
+    cantidad = len(distancias)
+    promedio = total / cantidad
+    
+    return promedio
 
-lista = cargar_distancias()
-promedio = calcular_promedio(lista)
-mayores = buscar_distancias_mayores(promedio, lista)
-print(f"La distancia promedio de los viajes es {promedio} y los viajes con distancia mayor son: {mayores}")
+def distancias_mayores(distancias, promedio):
+    distancias_mayores = []
+
+    for distancia in distancias:
+        if distancia > promedio:
+            distancias_mayores.append(distancia)
+
+    return distancias_mayores
+
+ruta = "repo\Programacion2-Practicos\TP2\distancias.txt"
+distancias = cargar_distancias(ruta)
+promedio = calcular_promedio(distancias)
+mayores = distancias_mayores(distancias, promedio)
+
+print(f"La distancia promedio de los viajes es {promedio} y los viajes con distancia mayor son: {mayores}", end="")

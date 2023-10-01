@@ -10,29 +10,40 @@ algoritmo crear un archivo “productos.txt” y cargarle datos al estilo:
 140;sal gruesa;5
 201;aceite;20 ( etc… )"""
 
-def cargar_datos_de_archivo():
-    ruta = r"c:\Programacion2\productos.txt"
-    lista_productos=[]
-    with open(ruta, 'r') as archivo:
-        for linea in archivo:
-            producto = linea.split(";")
-            dic_prod = {"codigo":producto[0], "nombre":producto[1], "precio":int(producto[2])}
-            lista_productos.append(dic_prod)
-            print(lista_productos[len(lista_productos)-1])
+def cargar_productos(ruta):
+    archivo = open(ruta, "r")
+    lista_productos = []
+
+    for linea in archivo:
+        datos = linea.split(";")
+
+        productos = {
+            "codigo": datos[0],
+            "nombre": datos[1],
+            "precio": int(datos[2])
+        }
+
+        lista_productos.append(productos)
+
+    archivo.close()
+
     return lista_productos
 
-def buscar_precio(nombre_producto):
-    precio = -1
+
+def buscar_precio(lista_productos, producto_buscado):
     for producto in lista_productos:
-        if producto["nombre"] == nombre_producto:
-            precio = producto['precio']
-    return precio
+        if producto["nombre"] == producto_buscado:
+            return producto["precio"]
+        
+    return "Producto no encontrado"
 
 
-lista_productos = cargar_datos_de_archivo()
-prod_buscado = input("Ingrese el nombre del producto que desea buscar: ")
-precio = buscar_precio(prod_buscado)
-if precio != -1:
-    print(f"El precio de {prod_buscado} es {precio}.")
+archivo = cargar_productos("repo\Programacion2-Practicos\TP2\productos.csv")
+
+producto_buscado = input("Ingrese el nombre del producto a buscar: ").lower()
+
+if producto_buscado == 'arroz' or producto_buscado == 'fideos' or producto_buscado == 'lentejas' or producto_buscado == 'porotos' or producto_buscado == 'sal gruesa':
+    precio = buscar_precio(archivo, producto_buscado)
+    print(f"El precio de {producto_buscado} es: {precio}")
 else:
-    print("No se encontró el producto ingresado.")
+    print("Producto no encontrado")
