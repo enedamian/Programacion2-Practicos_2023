@@ -34,6 +34,7 @@ def crearStock(rutaArchivo):
             producto = linea.split(",")
             dic_prod = {"Nombre":producto[0], "Precio":float(producto[1]), "Cantidad":int(producto[2])}
             lista.append(dic_prod)
+    archivo.close
     return lista
 
 # 4) Crear dos funcion que utilizando la estructura del punto 3, una que nos devuelva el producto mas caro y la otra que nos devuelva el producto con menor cantidad.
