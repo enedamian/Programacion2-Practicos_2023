@@ -9,10 +9,31 @@ midni=34573130
 # 1) implemente una funcion hashFecha(stringfecha) y sume el numero del día, el numero del mes y el numero del año y devuelva el resto de dividirlo por 3.
 # ejemplo fecha 01-01-1989 = (01+ 01 +1989) % 3 = 1992 % 3 = 2
 
+def esAnioBisiesto(anio):
+    return anio % 4 == 0 and (anio % 100 != 0 or anio % 400 == 0)
+
+def esFechaValida(lista_fecha):
+    if len(lista_fecha) != 3:
+        return False
+    try:
+        dia = int(lista_fecha[0])
+        mes = int(lista_fecha[1])
+        anio = int(lista_fecha[2])
+    except ValueError:
+        return False
+    if (mes < 1 or mes > 12) or (dia < 1 or dia > 31):
+        return False
+    if mes == 2 and (dia > 29 or (dia == 29 and not esAnioBisiesto(anio))):
+        return False
+    if mes in [4, 6, 9, 11] and dia > 30:
+        return False
+    return True
+
 def hashFecha(stringfecha: str):
     lista_fecha = stringfecha.split("-")
-    acumulado = reduce(lambda x, y: int(x) + int(y), lista_fecha)
-    return acumulado % 3
+    if not esFechaValida(lista_fecha):
+        return -1
+    return reduce(lambda x, y: int(x) + int(y), lista_fecha) % 3
 
 print(hashFecha(mifecha)) #resultado: 0
 
@@ -32,13 +53,16 @@ print(hashFecha(mifecha)) #resultado: 0
 # y "Cantidad" del tipo entero, y  los valores deben corresponder a los datos del archivo CSV
 
 def crearStock(ruta):
-    archivo = open(ruta, "r")
-    lista=[]
-    for linea in archivo:
-        datos = linea.split(",")
-        lista.append({"Nombre": datos[0].strip(), "Precio": float(datos[1]), "Cantidad": int(datos[2])})
-    archivo.close()
-    return lista
+    try:
+        archivo = open(ruta, "r")
+        lista=[]
+        for linea in archivo:
+                datos = linea.split(",")
+                lista.append({"Nombre": datos[0].strip(), "Precio": float(datos[1]), "Cantidad": int(datos[2])})
+        archivo.close()
+        return lista
+    except FileNotFoundError:
+        return []
 
 # 4) Crear dos funcion que utilizando la estructura del punto 3, una que nos devuelva el producto mas caro y la otra que nos devuelva el producto con menor cantidad.
 def productoMasCaro(lista):
