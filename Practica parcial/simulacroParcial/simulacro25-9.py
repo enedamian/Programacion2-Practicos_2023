@@ -82,8 +82,8 @@ def productoMenorCantidad(lista):
         else:
             return y
 
-    mas_caro = reduce(menorCantidad, lista)
-    return mas_caro["Nombre"]
+    menor_cantidad = reduce(menorCantidad, lista)
+    return menor_cantidad["Nombre"]
 
 # 5) Implemente una funcion que nos devuelva el total de la posible ganancia. Esto es, Cantidad * Precio para cada producto y que sume todos los resultados. (¿Se puede usar reduce? Fundamente)
 def totalGanancia2(lista):
