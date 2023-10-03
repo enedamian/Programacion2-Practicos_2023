@@ -1,0 +1,20 @@
+evento_codigo;deporte_codigo;evento_nombre;evento_descripción
+2001;1;Carrera de 100 metros;Competencia de velocidad en pista
+2002;2;Salto en alto;Salto vertical sobre la barra
+2003;1;Carrera de relevos;Relevos en equipos de 4 personas
+2004;3;Lanzamiento de disco;Competencia de lanzamiento de disco
+2005;2;Salto con pértiga;Salto sobre la barra con pértiga
+2006;4;Natación 200m libres;Competencia de natación en piscina
+2007;5;Carrera de ciclismo 10km;Carrera en bicicleta de carretera
+2008;3;Lanzamiento de martillo;Competencia de lanzamiento de martillo
+2009;1;Salto largo;Salto horizontal desde una plataforma
+2010;2;Salto triple;Tres saltos consecutivos en salto en alto
+2011;4;Natación 50m libres;Competencia de natación en piscina
+2012;5;Carrera de ciclismo 20km;Carrera en bicicleta de montaña
+2013;3;Lanzamiento de jabalina;Competencia de lanzamiento de jabalina
+2014;1;Carrera de obstáculos;Carrera con obstáculos en pista
+2015;4;Natación 100m libres;Competencia de natación en piscina
+2016;4;Natación 50m mariposa;Competencia de natación en piscina
+2017;5;Carrera de ciclismo 40km;Carrera en bicicleta de montaña
+2018;4;Natación 50m pecho;Competencia de natación en piscina
+2019;4;Natación 50m espalda;Competencia de natación en piscina
