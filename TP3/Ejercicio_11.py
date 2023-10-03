@@ -10,7 +10,8 @@ estudiante_2 = {
     "legajo": 20586,
     "nota_parcial1": 89,
     "nota_parcial2": 76,
-    "nota_final": 85}
+    "nota_final": 85
+    }
 
 estudiantes = [estudiante_1, estudiante_2]
 
