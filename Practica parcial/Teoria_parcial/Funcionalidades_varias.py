@@ -1,6 +1,14 @@
-#split
+#split separa un string en una lista de subcadenas basandose en el separador especifico utilizado
+frase = "Hola,esto,es,una,frase"
+palabras = frase.split(',')
 
-#strip
+#strip elimina los caracteres que vos decidas colocar en caracteres, si no pones nada se eliminan los espacios de mas
+#cadena.strip([caracteres])
+texto = "   Hola, mundo   "
+limpio = texto.strip()
+
+print(limpio)
+#"Hola, mundo"
 
 #funcion para saber si un numero es primo
 def es_primo(numero):
