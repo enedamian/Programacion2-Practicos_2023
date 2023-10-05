@@ -25,7 +25,7 @@ Para generar números float podemos usar `random.random()` que nos devolverá un
 Con la lista2 se debe devolver el menor número primo contenido en la lista, o “-1” si no tiene números primos.
 5. Un club deportivo que organiza para sus alumnos una serie de competencias para el fin de semana cerró las inscripciones a los eventos y se desea a procesarlas. Dada la siguiente estructura de datos simplificada:
     * **alumnos.csv** (con datos en el formato `alumno_dni;alumno_apellido;alumno_nombre`)
-    * **eventos.csv** (con datos en el formato `evento_codigo;deporte_codigo;evento_nombre;evento_descripción`)
+    * **eventos.csv** (con datos en el formato `evento_codigo;deporte_codigo;evento_nombre evento_descripción`)
     * **deportes.csv** (con datos en el formato `deporte_codigo;deporte_nombre`)
     * **alumnos_deportes** (con datos en el formato `alumno_dni;deporte_codigo`)
     * **inscripciones.csv** (con datos en el formato `alumno_dni;evento_codigo`)

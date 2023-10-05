@@ -1,4 +1,5 @@
 import random
+from functools import reduce
 
 # Funciones para manejar una cola de datos
 def encolar(cola, elemento):
@@ -30,15 +31,18 @@ def desapilar(pila):
 def generar_listas_aleatorias():
     longitud1 = random.randint(20, 50)
     longitud2 = random.randint(20, 50)
+    # La utilizacion de _ en el for es una convencion de progamadores en python para variables descartables
     lista1 = [random.randint(200, 5000) for _ in range(longitud1)]
     lista2 = [random.randint(200, 5000) for _ in range(longitud2)]
     return lista1, lista2
 
 # Función para multiplicar elementos impares y encontrar el menor número primo
 def procesar_listas(lista1, lista2):
-    minimo_lista2 = min(lista2)
+    minimo_lista2 = reduce(lambda x, y: x if x < y else y, lista2)
+    # minimo_lista2 = min(lista2) esta es otra manera de hacerlo
     sublista_impares = [x * minimo_lista2 for x in lista1 if x % 2 != 0]
     
+    #funcion para saber si un numero es primo
     def es_primo(numero):
         if numero <= 1:
             return False
@@ -48,6 +52,7 @@ def procesar_listas(lista1, lista2):
         return True
 
     lista2_primos = [x for x in lista2 if es_primo(x)]
+    menor_primo = reduce(lambda x, y: x if x < y else y, lista2_primos, -1)
     menor_primo = min(lista2_primos) if lista2_primos else -1
 
     return sublista_impares, menor_primo
@@ -61,27 +66,27 @@ inscripciones = []
 
 # Función para cargar los datos desde archivos CSV
 def cargar_datos_desde_archivos():
-    with open('alumnos.csv', 'r') as file:
+    with open('TP5/alumnos.csv', 'r') as file:
         for line in file:
             dni, apellido, nombre = line.strip().split(';')
             alumnos[dni] = {'apellido': apellido, 'nombre': nombre}
     
-    with open('eventos.csv', 'r') as file:
+    with open('TP5/eventos.csv', 'r') as file:
         for line in file:
             codigo, deporte, nombre, descripcion = line.strip().split(';')
             eventos[codigo] = {'deporte': deporte, 'nombre': nombre, 'descripcion': descripcion}
     
-    with open('deportes.csv', 'r') as file:
+    with open('TP5/deportes.csv', 'r') as file:
         for line in file:
             codigo, nombre = line.strip().split(';')
             deportes[codigo] = nombre
     
-    with open('alumnos_deportes.csv', 'r') as file:
+    with open('TP5/alumnos_deportes.csv', 'r') as file:
         for line in file:
             dni, deporte_codigo = line.strip().split(';')
             alumnos_deportes.append({'dni': dni, 'deporte_codigo': deporte_codigo})
     
-    with open('inscripciones.csv', 'r') as file:
+    with open('TP5/inscripciones.csv', 'r') as file:
         for line in file:
             dni, evento_codigo = line.strip().split(';')
             inscripciones.append({'dni': dni, 'evento_codigo': evento_codigo})
@@ -105,7 +110,7 @@ def procesar_inscripciones():
                 pila_inscripciones_invalidas.append(f"{dni}; {eventos[evento_codigo]['nombre']}")
 
     # Escribir las inscripciones válidas en el archivo alumnos_eventos.csv
-    with open('alumnos_eventos.csv', 'w') as file:
+    with open('TP5/alumnos_eventos.csv', 'w') as file:
         for inscripcion in cola_inscripciones_validas:
             file.write(f"{inscripcion['dni']};{inscripcion['evento_codigo']};{inscripcion['numero_inscripcion']}\n")
 
