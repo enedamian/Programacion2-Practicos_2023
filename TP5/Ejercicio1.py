@@ -6,6 +6,8 @@ direccion_alumnos = 'TP5/alumnos.csv'
 direccion_deportes = 'TP5/deportes.csv'
 direccion_eventos = 'TP5/eventos.csv'
 direccion_inscripciones = 'TP5/inscripciones.csv'
+
+direccion_escritura = 'TP5/alumnos_eventos.csv'
 # Funciones para manejar una cola de datos
 def encolar(cola, elemento):
     cola.append(elemento)
@@ -115,7 +117,7 @@ def procesar_inscripciones():
                 pila_inscripciones_invalidas.append(f"{dni}; {eventos[evento_codigo]['nombre']}")
 
     # Escribir las inscripciones válidas en el archivo alumnos_eventos.csv
-    with open('TP5/alumnos_eventos.csv', 'w') as file:
+    with open(direccion_escritura, 'w') as file:
         for inscripcion in cola_inscripciones_validas:
             file.write(f"{inscripcion['dni']};{inscripcion['evento_codigo']};{inscripcion['numero_inscripcion']}\n")
 
