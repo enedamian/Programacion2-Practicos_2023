@@ -1,6 +1,11 @@
 import random
 from functools import reduce
 
+direccion_alumnos_deportes = 'TP5/alumnos_deportes.csv'
+direccion_alumnos = 'TP5/alumnos.csv'
+direccion_deportes = 'TP5/deportes.csv'
+direccion_eventos = 'TP5/eventos.csv'
+direccion_inscripciones = 'TP5/inscripciones.csv'
 # Funciones para manejar una cola de datos
 def encolar(cola, elemento):
     cola.append(elemento)
@@ -66,27 +71,27 @@ inscripciones = []
 
 # Función para cargar los datos desde archivos CSV
 def cargar_datos_desde_archivos():
-    with open('TP5/alumnos.csv', 'r') as file:
+    with open(direccion_alumnos, 'r') as file:
         for line in file:
             dni, apellido, nombre = line.strip().split(';')
             alumnos[dni] = {'apellido': apellido, 'nombre': nombre}
     
-    with open('TP5/eventos.csv', 'r') as file:
+    with open(direccion_eventos, 'r') as file:
         for line in file:
             codigo, deporte, nombre, descripcion = line.strip().split(';')
             eventos[codigo] = {'deporte': deporte, 'nombre': nombre, 'descripcion': descripcion}
     
-    with open('TP5/deportes.csv', 'r') as file:
+    with open(direccion_deportes, 'r') as file:
         for line in file:
             codigo, nombre = line.strip().split(';')
             deportes[codigo] = nombre
     
-    with open('TP5/alumnos_deportes.csv', 'r') as file:
+    with open(direccion_alumnos_deportes, 'r') as file:
         for line in file:
             dni, deporte_codigo = line.strip().split(';')
             alumnos_deportes.append({'dni': dni, 'deporte_codigo': deporte_codigo})
     
-    with open('TP5/inscripciones.csv', 'r') as file:
+    with open(direccion_inscripciones, 'r') as file:
         for line in file:
             dni, evento_codigo = line.strip().split(';')
             inscripciones.append({'dni': dni, 'evento_codigo': evento_codigo})
