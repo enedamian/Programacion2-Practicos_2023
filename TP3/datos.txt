@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl ante, 
 tristique at bibendum a, accumsan nec lorem. Morbi sed justo sem. Integer sed nunc libero.
 Phasellus maximus efficitur mi eu volutpat. Mauris fermentum massa vitae turpis ultrices ultrices. 
@@ -6,3 +7,15 @@ Phasellus nec tempor augue. Pellentesque consequat ultrices luctus. Suspendisse 
 et lacinia enim. Suspendisse erat orci, accumsan quis sem tempor, faucibus scelerisque lorem. 
 Nullam luctus turpis sed tortor finibus, eu facilisis ex pharetra. Vivamus at sagittis quam. 
 In fringilla vitae nunc ac feugiat. Sed bibendum libero at ligula varius, sed posuere arcu varius.
+=======
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+>>>>>>> Stashed changes
