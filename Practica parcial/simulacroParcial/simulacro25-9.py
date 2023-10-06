@@ -1,3 +1,4 @@
+import os
 from functools import reduce
 # complete con su fecha de nacimiento, nombre , legajo y dni
 # Al finalizar subir el archivo al aula virtual.
@@ -62,62 +63,54 @@ print("\nResultado = 1 → ordemaniento por inserción"
 
 #Crea una lista de diccionarios donde cada diccionario represente un producto. Los diccionarios deben tener tres claves: "Nombre" del tipo string, "Precio" del tipo float 
 # y "Cantidad" del tipo entero, y  los valores deben corresponder a los datos del archivo CSV
+def validar_archivo(ruta):
+    return os.path.exists(ruta)
 
 def crearStock(ruta):
     lista=[]
 
-    with open(ruta, 'r', encoding = 'UTF-8') as archivo:
-        for linea in archivo:
-            linea_producto = linea.split(';')
-            producto = {
-                'nombre': linea_producto[0],
-                'precio': linea_producto[1],
-                'cantidad': linea_producto[2]
-            }
-            lista.append(producto)
-    return lista
+    if validar_archivo(ruta):
+        with open(ruta, 'r', encoding = 'UTF-8') as archivo:
+            for linea in archivo:
+                linea_producto = linea.split(';')
+                producto = {
+                    'nombre': linea_producto[0],
+                    'precio': float(linea_producto[1]),
+                    'cantidad': int(linea_producto[2])
+                }
+                lista.append(producto)
+        return lista
+    else:
+        print("El archivo ingresado no existe")
 
 archivo = input("Ingrese la ruta para el archivo de datos: ")
-print(crearStock(archivo))
+lista = crearStock(archivo)
+print(lista)
 
 # 4) Crear dos funcion que utilizando la estructura del punto 3, una que nos devuelva el producto mas caro y la otra que nos devuelva el producto con menor cantidad.
 def productoMasCaro(lista):
-    producto_mas_caro = lista[0]
-    return reduce(lambda x: x['precio'] > producto_mas_caro, lista)
+    return reduce(lambda x, y: x if x['precio'] > y['precio'] else y, lista)
 
 def productoMenorCantidad(lista):
-    producto_menor_cantidad = lista[0]
-    return reduce[lambda x: x['cantidad'] < producto_menor_cantidad, lista]
+    return reduce(lambda x, y: x if x['cantidad'] < y['cantidad'] else y, lista)
 
-def validar_archivo(ruta):
-    lista = []
-    with open(ruta, 'r', encoding = 'UTF-8') as archivo:
-        for linea in archivo:
-            dato = linea.split(';')
-            producto = {
-                'nombre': dato[0],
-                'precio': dato[1],
-                'cantidad': dato[2]
-            }
-            lista.append(producto)
-    return lista
-
-archivo = input("Ingrese la ruta para el archivo de datos: ")
-datos = validar_archivo(archivo)
-print("El producto más caro es: ", productoMasCaro(datos))
+        
+print("\nEl producto más caro es: ", productoMasCaro(lista))
+print("El producto con menor stock disponible es:", productoMenorCantidad(lista))
 
 # 5) Implemente una funcion que nos devuelva el total de la posible ganancia. Esto es, Cantidad * Precio para cada producto y que sume todos los resultados. (¿Se puede usar reduce? Fundamente)
 def totalGanancia(lista):
     total = 0
     
     for producto in lista:
-        precio = producto["precio"]
-        cantidad = producto["cantidad"]
+        precio = producto['precio']
+        cantidad = producto['cantidad']
 
         total += precio * cantidad
 
     return total
 
 # solución con reduce
-def total_ganancia(lista):
-    return reduce(lambda x, y: x + y['precio'] * y['cantidad'], lista, 0)
+
+total_ganancia = reduce(lambda x, y: x + y['precio'] * y['cantidad'], lista, 0)
+print("\nGanancias totales: ", total_ganancia)
