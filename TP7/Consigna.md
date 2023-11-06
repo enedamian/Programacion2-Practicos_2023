@@ -27,7 +27,7 @@
         * Actualizar la información de un socio por su ID (`PUT`). Debe recibir los datos en formato JSON.
         * Eliminar un socio por su ID (`DELETE`). Realizar validaciones antes de eliminar el socio: no debe tener pendiente una devolución.
     * Préstamos:
-        ACLARACIÓN: de cada libro la biblioteca tiene solamente un ejemplar.
+        *ACLARACIÓN: de cada libro la biblioteca tiene solamente un ejemplar*.
         * Obtener la lista de todos los libros prestados que aún no se han devuelto (`GET`).
         * Obtener detalles de un prestamo de libro por su ID (`GET`).
         * Generar un nuevo prestamo (`POST`). Debe recibir los datos en formato JSON.
