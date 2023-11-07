@@ -1,20 +1,20 @@
 id,titulo,autor,anio_publicacion
-1,The Hobbit,J.R.R. Tolkien,1984
-2,The Return of the King,J.R.R. Tolkien,1978
+1,The Return of the King,J.R.R. Tolkien,1978
+2,The Hobbit,J.R.R. Tolkien,1968
 3,The Fellowship of the Ring,J.R.R. Tolkien,1988
-4,The Lord of the Rings,J.R.R. Tolkien,1988
+4,The Two Towers,J.R.R. Tolkien,1999
 5,The Silmarillion,J.R.R. Tolkien,1988
-6,The Two Towers,J.R.R. Tolkien,1999
+6,The Lord of the Rings,J.R.R. Tolkien,1965
 7,Farmer Giles of Ham,J.R.R. Tolkien,1975
 8,Unfinished Tales of Númenor and Middle-earth,J.R.R. Tolkien,2019
-9,The Book of Lost Tales, Part One,J.R.R. Tolkien,1999
+9,The Book of Lost Tales - Part One,J.R.R. Tolkien,1999
 10,The Children of Húrin,J.R.R. Tolkien,2008
 11,Smith of Wootton Major,J.R.R. Tolkien,1990
 12,Novels (Hobbit / Lord of the Rings),J.R.R. Tolkien,2006
 13,Tree and Leaf,J.R.R. Tolkien,1965
 14,Roverandom,J.R.R. Tolkien,2003
 15,The Adventures of Tom Bombadil and Other Verses from the Red Book,J.R.R. Tolkien,1963
-16,The Book of Lost Tales, Part Two,J.R.R. Tolkien,1986
+16,The Book of Lost Tales - Part Two,J.R.R. Tolkien,1986
 17,Beowulf. the monsters and the critics,J.R.R. Tolkien,1978
 18,Tales from the Perilous Realm,J.R.R. Tolkien,1998
 19,Bilbo's Last Song (At the Grey Havens),J.R.R. Tolkien,1992
@@ -36,7 +36,7 @@ id,titulo,autor,anio_publicacion
 35,Beren and Luthien,J.R.R. Tolkien,2019
 36,Works (Farmer Giles of Ham / Leaf by Niggle / Smith of Wootton Major),J.R.R. Tolkien,2001
 37,Mr. Bliss,J.R.R. Tolkien,1983
-38,Sir Gawain and the Green Knight, Pearl, and Sir Orfeo,J.R.R. Tolkien,1975
+38,Sir Gawain and the Green Knight - Pearl - and Sir Orfeo,J.R.R. Tolkien,1975
 39,The Hobbit,Charles Dixon,1991
 40,The road goes ever on,Donald Swann,1968
 41,Morgoth's Ring,J.R.R. Tolkien,1993
@@ -49,7 +49,7 @@ id,titulo,autor,anio_publicacion
 48,The Legend of Sigurd and Gudrún,J.R.R. Tolkien,2009
 49,Nature of Middle-Earth,J.R.R. Tolkien,2022
 50,The Story of Kullervo,J.R.R. Tolkien,2017
-51,Sauron Defeated,The History of Middle Earth Volume IX,J.R.R. Tolkien,1993
+51,Sauron Defeated -The History of Middle Earth Volume IX,J.R.R. Tolkien,1993
 52,Finn and Hengest,J.R.R. Tolkien,1982
 53,Realms of Tolkien - Images of Middle-Earth,J.R.R. Tolkien,1999
 54,Beowulf: A Translation and Commentary,J.R.R. Tolkien,2015
@@ -82,7 +82,7 @@ id,titulo,autor,anio_publicacion
 81,J.R.R. Tolkien-4 Vol. (Boxed),J.R.R. Tolkien,1981
 82,The End of the Third Age,J.R.R. Tolkien,2000
 83,The Silmarillion. 2/3,J.R.R. Tolkien,1983
-84,Contes et Légendes inachevées, tome 2,J.R.R. Tolkien,2001
+84,Contes et Légendes inachevées - tome 2,J.R.R. Tolkien,2001
 85,Unfinished tales of Numenor and Middle-earth. 1/3,J.R.R. Tolkien,1991
 86,Of the darkening of Valinor and of the flight of the Noldor from The silmarillion,J.R.R. Tolkien,1978
 87,The Return of the King,J.R.R. Tolkien,2002
