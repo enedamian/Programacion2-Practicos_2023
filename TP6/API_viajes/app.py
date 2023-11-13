@@ -2,6 +2,13 @@ from flask import Flask, request, jsonify
 from destinos import destinos
 app = Flask(__name__)
 
+# obtener un viaje por id
+def obtener_viaje_por_id(id):
+    for viaje in destinos:
+        if viaje['id'] == id:
+            return viaje
+    return None
+
 # obtener todos los viajes
 @app.route('/viajes', methods = ['GET']) 
 def obtener_todos_los_viajes():
@@ -10,32 +17,42 @@ def obtener_todos_los_viajes():
 # obtener un viaje
 @app.route('/viajes/<int:id>', methods = ['GET'])
 def obtener_viaje(id):
-    if id in destinos:
+    viaje = obtener_viaje_por_id(id)
+    if viaje:
         return jsonify({id: destinos[id]})
     return jsonify({'error': 'viaje no encontrado'}), 404
 
+def obtener_prox_id():
+    return max(destino['id'] for destino in destinos) + 1 if destinos else 1
+
 @app.route('/viajes', methods = ['POST'])
 def agregar_viaje():
-    nuevo_destino = {
-        'name': request.form['name'],
-        'price': request.form['price'],
-        'country': request.form['country']
-    }
-    nuevo_id = max(destinos.keys()) + 1
-    destinos[nuevo_id] = nuevo_destino
-    return jsonify(nuevo_destino)
+    nuevo_viaje = request.get_json()
+    nuevo_viaje['id'] = obtener_prox_id()
+    destinos.append(nuevo_viaje)
+    return jsonify(nuevo_viaje), 201
 
-    
 
 @app.route('/viajes/<int:id>', methods = ['PUT'])
 def actualizar_viaje(id):
-    viaje = [destino for destino in destinos if destino["id"] == id]
-    if len(viaje)==0:
-        return jsonify({'error': 'No existe un viaje con ese ID'})
-    else:
-        # modificar el destino
-        return jsonify(f'viaje {id} con destino a {viaje["name"]} actualizado correctamente')
+    viaje = obtener_viaje_por_id(id)
+    if viaje:
+        datos_actualizados = request.get_json()
+        viaje.update(datos_actualizados)
+        return jsonify(viaje)
+    return jsonify({'error': 'viaje no encontrado'}), 404
 
+@app.route('/viajes/<int:id>', methods = ['DELETE'])
+def eliminar_viaje(id):
+    viaje = obtener_viaje_por_id(id)
+
+    if viaje:
+        if viaje['cupo_actual'] < viaje['cupo_max']:
+            return jsonify({'advertencia': f'se han vendido cupos del viaje {id}'})
+        else:
+            destinos.remove(viaje)
+            return jsonify({'message': f'se ha eliminado el viaje {id}'})
+    return jsonify({'error': 'viaje no encontrado'}), 404
 
 @app.route('/')
 def index():
