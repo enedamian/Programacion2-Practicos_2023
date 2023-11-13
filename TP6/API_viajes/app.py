@@ -32,7 +32,6 @@ def agregar_viaje():
     destinos.append(nuevo_viaje)
     return jsonify({'message': f'se ha creado un nuevo usuario con la id {obtener_prox_id()}'}), 201
 
-
 @app.route('/viajes/<int:id>', methods = ['PUT'])
 def actualizar_viaje(id):
     viaje = obtener_viaje_por_id(id)
