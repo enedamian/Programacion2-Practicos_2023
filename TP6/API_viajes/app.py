@@ -30,7 +30,7 @@ def agregar_viaje():
     nuevo_viaje = request.get_json()
     nuevo_viaje['id'] = obtener_prox_id()
     destinos.append(nuevo_viaje)
-    return jsonify(nuevo_viaje), 201
+    return jsonify({'message': f'se ha creado un nuevo usuario con la id {obtener_prox_id()}'}), 201
 
 
 @app.route('/viajes/<int:id>', methods = ['PUT'])
@@ -39,13 +39,12 @@ def actualizar_viaje(id):
     if viaje:
         datos_actualizados = request.get_json()
         viaje.update(datos_actualizados)
-        return jsonify(viaje)
+        return jsonify({'message': f'se ha actualizado el viaje {id} con éxito'})
     return jsonify({'error': 'viaje no encontrado'}), 404
 
 @app.route('/viajes/<int:id>', methods = ['DELETE'])
 def eliminar_viaje(id):
     viaje = obtener_viaje_por_id(id)
-
     if viaje:
         if viaje['cupo_actual'] < viaje['cupo_max']:
             return jsonify({'advertencia': f'se han vendido cupos del viaje {id}'})
