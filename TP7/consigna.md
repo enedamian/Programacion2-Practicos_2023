@@ -27,7 +27,7 @@
     * Préstamos: ACLARACIÓN: de cada libro la biblioteca tiene solamente un ejemplar.
         * Obtener la lista de todos los libros prestados que aún no se han devuelto (```GET```).
         * Obtener detalles de un prestamo de libro por su ID (```GET```).
-        * Generar un nuevo prestamo (```POST``). Debe recibir los datos en formato JSON.
+        * Generar un nuevo prestamo (```POST```). Debe recibir los datos en formato JSON.
         * Registrar la devolución de un prestamo por su ID (```PUT```). Debe recibir los datos en formato JSON.
 7. Persistencia de datos: Los datos que irá manejando la API deben actualizarse en los archivos del modelo a medida que se van generando/modificando.
 IMPORTANTE: Agrega validaciones para asegurarte de que los datos proporcionados a la API sean correctos y válidos en todo momento, de lo contrario retornar un mensaje de datos incorrectos con un código de respuesta de error.
