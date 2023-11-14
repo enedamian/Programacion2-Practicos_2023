@@ -30,7 +30,7 @@ def crear_libro(titulo, autor, anio_publicacion):
     })
     id_libro += 1
     exportar_libro()
-    return libros[-1]   #devuelve el primer elemento de la lista, o sea el título recién creado
+    return libros[-1]   #devuelve el ultimo elemento de la lista, o sea el título recién creado
 
 def editar_libro(id, titulo, autor, anio_publicacion):
     for libro in libros:
