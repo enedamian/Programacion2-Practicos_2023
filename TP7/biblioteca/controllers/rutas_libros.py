@@ -14,7 +14,7 @@ def get_libros():
     
 @libros_blueprint.route('/libros/<int:id>', methods=['GET'])
 def get_libro(id):
-    libro_encontrado = obtener_libro_por_id(int(id))
+    libro_encontrado = obtener_libro_por_id(id)
     if not libro_encontrado:
         return jsonify({'message': 'No existe el libro con id: {}'.format(id)}), 404
     else:
@@ -29,7 +29,7 @@ def post_libro():
         nuevo_libro = request.get_json()
         libro_validado = validar_campos(nuevo_libro)
         if not libro_validado:
-            return jsonify({'message': 'Uno de los campos no ha sido agregado'}), 404
+            return jsonify({'message': 'Uno o más campos no han sido agregados'}), 404
         else:
             libro_creado = crear_libro(nuevo_libro['titulo'], nuevo_libro['autor'], nuevo_libro['anio_publicacion'])
             return jsonify(libro_creado), 201
@@ -42,7 +42,7 @@ def put_libro(id):
     else:
         libro_actualizado = request.get_json()
         if not validar_campos(libro_actualizado):
-            return jsonify({'message': 'Uno de los campos no ha sido agregado'}), 404
+            return jsonify({'message': 'Uno o más campos no han sido agregados'}), 404
         else:
             libro_encontrado = obtener_libro_por_id(id)
             if not libro_encontrado:
