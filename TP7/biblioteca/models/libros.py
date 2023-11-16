@@ -76,3 +76,10 @@ def exportar_libro():
         writer.writeheader()    # Crea cabecera
         for libro in libros:
             writer.writerow(libro)
+
+def existe(id):
+    global libros
+    for libro in libros:
+        if libro['id'] == id:
+            return True
+    return False
