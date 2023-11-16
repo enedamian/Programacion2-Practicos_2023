@@ -45,6 +45,13 @@ def editar_libro(id, titulo, autor, anio_publicacion):
     return None     #devuelve None si no se encuentra el libro
 
 # ---------------------------- Funciones auxiliares ----------------------------
+def existe_libro(id):
+    global libros
+    for libro in libros:
+        if libro['id'] == id:
+            return True
+    return False
+
 def archivo_validado(ruta_archivo):
     return os.path.exists(ruta_archivo)
 
@@ -76,10 +83,3 @@ def exportar_libro():
         writer.writeheader()    # Crea cabecera
         for libro in libros:
             writer.writerow(libro)
-
-def existe(id):
-    global libros
-    for libro in libros:
-        if libro['id'] == id:
-            return True
-    return False
