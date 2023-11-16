@@ -33,7 +33,7 @@ def agregar_socio():
             socio_creado = crear_socio(nuevo_socio['dni'], nuevo_socio['nombre'], nuevo_socio['apellido'], nuevo_socio['telefono'], nuevo_socio['email'])
             return jsonify(socio_creado), 201
         
-@socios_blueprint.route('socios/<int:id>', methods=['PUT'])
+@socios_blueprint.route('/socios/<int:id>', methods=['PUT'])
 def update_socio(id):
     socio_existe = existe_socio(id)
     if not socio_existe:
