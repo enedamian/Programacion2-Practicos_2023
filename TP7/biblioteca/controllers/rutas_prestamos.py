@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.prestamos import obtener_prestamos, obtener_prestamo_por_id, obtener_prestamos_sin_devolver, crear_prestamo, editar_prestamo, eliminar_prestamo, libro_prestado
+from models.prestamos import obtener_prestamos, obtener_prestamo_por_id, obtener_prestamos_sin_devolver, crear_prestamo, editar_prestamo, eliminar_prestamo, libro_prestado, existe_prestamo
 from models.libros import existe_libro
 from models.socios import existe_socio
 
@@ -50,12 +50,11 @@ def post_prestamo():
 
 @prestamos_blueprint.route('/prestamos/<int:id>', methods=['PUT'])
 def update_prestamo(id):
-    prestamo_existe = obtener_prestamo_por_id(id)
+    prestamo_existe = existe_prestamo(id)
     prestamo_existente = request.get_json()
-    prestamo_validado = validar_prestamo()
     if prestamo_existe:
-        if request.is_json:
-            if prestamo_validado:
+        if 'socio_id' in prestamo_existente and 'libro_id' in prestamo_existente and 'fecha_retiro' in prestamo_existente and 'fecha_devolucion' in prestamo_existente:
+            if request.is_json:
                 if existe_libro(prestamo_existente['libro_id']):
                     if existe_socio(prestamo_existente['socio_id']):
                         if not libro_prestado(prestamo_existente['libro_id']):
@@ -71,15 +70,15 @@ def update_prestamo(id):
                 else:
                     return jsonify({'error': 'libro no existe'})
             else:
-                return jsonify({'message': 'los datos ingresados no son validos'}), 400
+                return jsonify({'message': 'los datos ingresados no se encuentra en formato JSON'}), 400
         else:
-            return jsonify({'message': 'los datos ingresados no se encuentra en formato JSON'}), 400
+            return jsonify({'error': 'faltan campos para editar el prestamo'})
     else:
         return jsonify({'message': f'No se ha encontrado al prestamo {id}'}), 400
             
 @prestamos_blueprint.route('/prestamos/<int:id>', methods=['DELETE'])
 def remover_prestamo(id):
-    prestamo_existe = obtener_prestamo_por_id(id)
+    prestamo_existe = existe_prestamo(id)
     if not prestamo_existe:
          return jsonify({'message': f'No se ha encontrado al prestamo {id}'}), 400
     else: 

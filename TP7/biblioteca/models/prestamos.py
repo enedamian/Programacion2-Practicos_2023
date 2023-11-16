@@ -57,7 +57,7 @@ def eliminar_prestamo(id):
 def obtener_prestamos_sin_devolver():
     prestamos_sin_devolver = []
     for prestamo in prestamos:
-        if prestamo['fecha_devolucion'] == '' or datetime.datetime.strptime(prestamo['fecha_devolucion']) > datetime.datetime.now:
+        if prestamo['fecha_devolucion'] == '' or datetime.datetime.strptime(prestamo['fecha_devolucion'], '%d-%m-%Y') > datetime.datetime.now():
             prestamos_sin_devolver.append(prestamo)
     return prestamos_sin_devolver
 
@@ -69,6 +69,12 @@ def libro_prestado(id_libro):
     return False
 
 # --------------------------------- Funciones auxiliares ---------------------------------
+def existe_prestamo(id):
+    for prestamo in prestamos:
+        if prestamo['id'] == id:
+            return True
+    return False
+
 def validacion(ruta):
     return os.path.exists(ruta)
 
