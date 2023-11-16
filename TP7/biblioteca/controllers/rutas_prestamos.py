@@ -7,7 +7,7 @@ prestamos_blueprint = Blueprint('prestamos_blueprint', __name__)
 
 @prestamos_blueprint.route('/prestamos', methods=['GET'])
 def get_prestamos():
-    prestamos = obtener_prestamos
+    prestamos = obtener_prestamos()
     if len(prestamos) == 0:
         return jsonify({'message': 'no hay prestamos'}), 404
     else:
@@ -34,10 +34,10 @@ def post_prestamo():
     prestamo_nuevo = request.get_json()
     is_json = request.is_json
     if is_json:
-        if 'socio_id' in prestamo_nuevo and 'libro_id' in prestamo_nuevo and 'fecha_retiro' in prestamo_nuevo and 'fecha_devolucion' in prestamo_nuevo:
-            if existe_socio(prestamo_nuevo['socio_dni']):
+        if 'socio_dni' in prestamo_nuevo and 'libro_id' in prestamo_nuevo and 'fecha_retiro' in prestamo_nuevo and 'fecha_devolucion' in prestamo_nuevo:
+            if existe_socio(prestamo_nuevo['socio_id']):
                 if existe_libro(prestamo_nuevo['libro_id']):
-                    prestamo_creado = crear_prestamo(prestamo_nuevo['socio_id'], prestamo_nuevo['libro_id'], prestamo_nuevo['fecha_retiro'], prestamo_nuevo['fecha_devolucion'])
+                    prestamo_creado = crear_prestamo(prestamo_nuevo['socio_dni'], prestamo_nuevo['libro_id'], prestamo_nuevo['fecha_retiro'], prestamo_nuevo['fecha_devolucion'])
                     return jsonify(prestamo_creado), 201
                 else:
                     return jsonify({'message': 'el libro no existe'}), 404
@@ -59,7 +59,7 @@ def update_prestamo(id):
                 if existe_libro(prestamo_existente['libro_id']):
                     if existe_socio(prestamo_existente['socio_id']):
                         if not libro_prestado(prestamo_existente['libro_id']):
-                            prestamo_actualizado = editar_prestamo(id, prestamo_existente['socio_id'], prestamo_existente['libro_id'], prestamo_existente['fecha_retiro'], prestamo_existente['fecha_devolucion'])
+                            prestamo_actualizado = editar_prestamo(id, prestamo_existente['socio_dni'], prestamo_existente['libro_id'], prestamo_existente['fecha_retiro'], prestamo_existente['fecha_devolucion'])
                             if prestamo_actualizado:
                                 return jsonify(prestamo_actualizado), 200   
                             else:

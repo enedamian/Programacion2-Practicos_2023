@@ -2,7 +2,7 @@ import os, csv, datetime
 
 prestamos = []
 id_prestamo = 1
-ruta_prestamos = 'models\\prestamos.py'
+ruta_prestamos = 'models\\prestamos.csv'
 
 # --------------------------------- Funciones CRUD ---------------------------------
 def inicializar_prestamos():
@@ -77,8 +77,8 @@ def importar_prestamos():
     global id_prestamo
     prestamos = []
 
-    with open(ruta_prestamos, 'r', encoding='UTF-8') as archivo:
-        reader = csv.DictReader(archivo)
+    with open(ruta_prestamos, 'r', encoding='UTF-8') as csv_file:
+        reader = csv.DictReader(csv_file)
         for linea in reader:
             prestamo = {
                 'id': int(linea['id']),
@@ -87,7 +87,8 @@ def importar_prestamos():
                 'fecha_retiro': linea['fecha_retiro'],
                 'fecha_devolucion': linea['fecha_devolucion']
             }
-        prestamos.append(prestamo)
+            prestamos.append(prestamo)
+
         if len(prestamos) > 0:
             id_prestamo = prestamos[-1]['id'] + 1
         else:

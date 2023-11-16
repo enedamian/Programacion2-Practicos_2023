@@ -1,1 +1,3 @@
-id,socio_dni,libro_id,fecha_retiro,fecha_devolucion
+id,socio_dni,libro_id,fecha_retiro,fecha_devolucion
+1,231423,6,24-8-2023,23-10-2023
+2,1234545,8,24-8-2023,23-10-2023
