@@ -59,7 +59,7 @@ def eliminar_socio(id):
 def validacion(ruta):
     return os.path.exists(ruta)
 
-def existe(id):
+def existe_socio(id):
     global socios
     for socio in socios:
         if socio['id'] == id:

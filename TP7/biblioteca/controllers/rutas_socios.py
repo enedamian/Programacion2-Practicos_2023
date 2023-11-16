@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.socios import obtener_socios, obtener_socio_por_id, crear_socio, editar_socio, eliminar_socio, existe
+from models.socios import obtener_socios, obtener_socio_por_id, crear_socio, editar_socio, eliminar_socio, existe_socio
 
 socios_blueprint = Blueprint('socios', __name__)
 
@@ -35,7 +35,7 @@ def agregar_socio():
         
 @socios_blueprint.route('socios/<int:id>', methods=['PUT'])
 def update_socio(id):
-    socio_existe = existe(id)
+    socio_existe = existe_socio(id)
     if not socio_existe:
         return jsonify({'message': f'no se ha encontrado al socio {id}'})
     else:
@@ -53,7 +53,7 @@ def update_socio(id):
         
 @socios_blueprint.route('/socios/<int:id>', methods=['DELETE'])
 def remover_socio(id):
-    socio_existe = existe(id)
+    socio_existe = existe_socio(id)
     if not socio_existe:
         return jsonify({'message': f'no se ha encontrado al socio {id}'})
     else:
