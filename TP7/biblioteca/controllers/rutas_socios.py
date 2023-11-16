@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models.socios import obtener_socios, obtener_socio_por_id, crear_socio, eliminar_socio, existe
+from models.socios import obtener_socios, obtener_socio_por_id, crear_socio, editar_socio, eliminar_socio, existe
 
 socios_blueprint = Blueprint('socios', __name__)
 
@@ -32,6 +32,24 @@ def agregar_socio():
         else:
             socio_creado = crear_socio(nuevo_socio['dni'], nuevo_socio['nombre'], nuevo_socio['apellido'], nuevo_socio['telefono'], nuevo_socio['email'])
             return jsonify(socio_creado), 201
+        
+@socios_blueprint.route('socios/<int:id>', methods=['PUT'])
+def update_socio(id):
+    socio_existe = existe(id)
+    if not socio_existe:
+        return jsonify({'message': f'no se ha encontrado al socio {id}'})
+    else:
+        is_json = request.is_json
+        if not is_json:
+            return jsonify({'message': 'los datos ingresados no se encuentran en formato JSON'})
+        else:
+            nuevo_socio = request.get_json()
+            socio_validado = validar_socio(nuevo_socio)
+            if not socio_validado:
+                return jsonify({'message': 'Faltan uno o más campos'}), 404
+            else:
+                socio_actualizado = editar_socio(id, nuevo_socio['dni'], nuevo_socio['nombre'], nuevo_socio['apellido'], nuevo_socio['telefono'], nuevo_socio['email'])
+                return jsonify(socio_actualizado), 200
         
 @socios_blueprint.route('/socios/<int:id>', methods=['DELETE'])
 def remover_socio(id):
